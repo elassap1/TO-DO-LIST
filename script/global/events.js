@@ -15,6 +15,15 @@ class Events {
 
     window.onclick = (e) =>{
 
+      // remove the invalid dashboard part
+      const invalid = document.querySelector('.dash_invalid');
+
+      if(invalid != null){
+
+        invalid.remove();
+
+      }
+
       // click to add task
       if(e.target.classList[0] == 'add'){
 
@@ -60,15 +69,11 @@ class Events {
         // delete element from all dom
         if(e.target.parentNode.parentNode.classList[0] == 'display'){
 
-//          e.target.parentNode.remove();
-
           let dlt = e.target.parentNode.classList[0];
 
           dlt = dlt.slice(0, dlt.length-2);
 
           const dltall = document.querySelector(`.${dlt}`).remove();
-
-          console.log(dltall)
 
         }else
 
@@ -94,20 +99,24 @@ class Events {
       // click on submit
       if(e.target.classList[0] == 'submit'){
 
-      // on submit new task
-      if(e.target.parentNode.classList[0] == 'dashboard-contenaire'){
+        // on submit new task
+        if(e.target.parentNode.classList[0] == 'dashboard-contenaire'){
 
           //select the dashboard elements
           const content = document.querySelector('.dashboard-contenaire').children
 
           // check the fields is not empty
-          if(content[2].value != ''){
+          if(content[2].value.length > 2 && content[4].value.length > 2 && content[5].value != '' && content[6].value != '' ){
 
             // add task to parent
             mange.addTasksToList(`${selected}`, content[2].value, content[4].value, content[5].value, content[6].value)
 
             // remove the dashbord
             document.querySelector('.dashboard').remove();
+
+          }else{
+
+            dashboard.dashboardInvalid();
 
           }
 
@@ -119,14 +128,18 @@ class Events {
           const list = document.querySelector('.dashboard-new-list input').value;
 
           // add new list
-          if(list != ''){
+          if(list.length >= 3){
 
             mange.addList('span', list, '../../icon/list.ico');
 
-          }
+            // remove the dashbord
+            document.querySelector('.dashboard').remove();
 
-          // remove the dashbord
-          document.querySelector('.dashboard').remove();
+          }else{
+
+            dashboard.dashboardInvalid();
+
+          }
 
         }else
 
@@ -135,13 +148,17 @@ class Events {
 
           const list = document.querySelectorAll('.dashboard-book input');
 
-          if(list[0].value != '' && list[1].value != '' && list[2].value != '' && (list[4].checked == true || list[3].checked == true )){
+          if(list[0].value.length >= 3 && list[1].value.length >= 3 && list[2].value != '' && (list[4].checked == true || list[3].checked == true )){
 
             mange.addBook(`${selected}`, list[0].value, list[1].value, list[2].value, list[3].checked)
 
             
             // remove the dashbord
             document.querySelector('.dashboard').remove();
+
+          }else{
+
+            dashboard.dashboardInvalid();
 
           }
 
@@ -193,7 +210,7 @@ class Events {
   autoResize(){
 
     // select textarea
-    const area = document.querySelector('.dashboard textarea');
+    const area = document.querySelector('.field');
 
     // get length
     let lent = area.value.length;

@@ -46,12 +46,11 @@ class Dashboard {
     newElements.createNewElements('span',1,['X'],['dlt'],'','','.dashboard-contenaire');
 
     // content
-    newElements.createNewElements('textarea',1,'',['field'],['rows'],['2'],'.dashboard-contenaire');
+    newElements.createNewElements('input',1,'',['field'],['type'],['text'],'.dashboard-contenaire');
 
     // select place holder and resize textarea
-    const area = document.querySelector('.dashboard textarea');
+    const area = document.querySelector('.dashboard .field');
     area.setAttribute('placeholder','Task Note')
-    area.setAttribute('cols','38')
 
     // time
     newElements.createNewElements('input',1,'','',[`type`],[`time`],'.dashboard-contenaire');
@@ -103,6 +102,12 @@ class Dashboard {
 
     // submit
     newElements.createNewElements('button',1,['Submit'],['submit'],'','','.dashboard-book');
+
+  }
+
+  dashboardInvalid(){
+
+    newElements.createNewElements('div',1,['please fill out the field'],['dash_invalid'],'','','.dashboard div')
 
   }
 }

@@ -2,15 +2,13 @@ import MangeElement from './mange.js'
 import CreateElement from '../global/createElement.js'
 import Events from '../global/events.js'
 import Dashboard from './dashboards.js'
+import Validation from '../global/validation.js'
 
+let validation = new Validation();
 let newElements = new CreateElement();
 let mange = new MangeElement();
 let event = new Events();
-
 let dashboard = new Dashboard();
-//task.dashboard();
-
-//event.catchEvents();
 
 const nav = () =>{
 
@@ -52,6 +50,9 @@ const nav = () =>{
       // ivoked function
       event.autoResize();
     }
+
+//    console.log('keydown');
+    validation.valid();
 
   });
 

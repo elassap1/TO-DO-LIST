@@ -2,7 +2,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  outline: none;
 }
 
 @mixin delete {
@@ -301,11 +300,12 @@
         border: 1px solid black;
         margin: 10px auto;
       }
-      >textarea{
+      >.field{
+        width: 80%;
         margin: 15px auto;
         padding: 5px;
         font-size: 1.2em;
-        background: rgb(222, 226, 226);
+        background: rgb(226, 223, 222);
         border: 0;
         border-radius: 5px;
         scroll-behavior: unset;
@@ -401,6 +401,27 @@
       border: 0;
       cursor: pointer;
     }
+  }
+
+  #valid{
+    border: 2px solid #23e633;
+  }
+  
+  #invalid{
+    border: 2px solid red;
+  }
+  
+  .dash_invalid{
+    position: absolute;
+    background: rgb(34, 33, 33);
+    color: red;
+    top: 0px;
+    left: 50%;
+    transform: translate(-50%,0);
+    z-index: 10;
+    font-size: 1.4em;
+    font-weight: 200;
+    padding: 5px;
   }
 
   .end,.tasks{
